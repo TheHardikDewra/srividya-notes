@@ -422,6 +422,31 @@ def main():
     assert reachable == 123, f'only {reachable} of 123 offerings are on a known region'
     print(f'chakra regions      {len(used)} used, all known, all 123 reachable')
 
+    # The UI masks the kutas in both scripts, using a literal table in app.js.
+    # If a generated IAST spelling ever drifted from that table the mask would
+    # silently leak the mantra in IAST mode, so check parity pair by pair.
+    kuta_iast = {k: to_iast(k) for k in KUTAS}
+    leaks, pairs = [], [0]
+
+    def walk_pairs(o, path=''):
+        if isinstance(o, dict):
+            if isinstance(o.get('d'), str) and isinstance(o.get('i'), str):
+                pairs[0] += 1
+                for dev, iast in kuta_iast.items():
+                    if o['d'].count(dev) != o['i'].count(iast):
+                        leaks.append((path, dev, o['d'][:60]))
+            for k, v in o.items():
+                walk_pairs(v, path + '/' + k)
+        elif isinstance(o, list):
+            for n, v in enumerate(o):
+                walk_pairs(v, f'{path}[{n}]')
+
+    walk_pairs(data)
+    assert not leaks, f'kuta would leak unmasked in IAST at: {leaks[:3]}'
+    print(f'kuta mask           {pairs[0]} pairs checked, both scripts covered')
+    print(f'                    app.js KUTA_IAST must read: '
+          + ', '.join(f'{k}={v}' for k, v in kuta_iast.items()))
+
     # every diagram the app asks for must exist
     for g in data['avarana']['groups']:
         names = ['av2a', 'av2b', 'av2c'] if g['id'] == 'av2' else [g['id']]
