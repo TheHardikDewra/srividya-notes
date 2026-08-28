@@ -1,0 +1,11 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Each user can read/write only their own per-app progress doc.
+    // Shared by all sadhana apps: shodashi-ashtottara, lalita-sahasranama,
+    // lalita-trishati, shri-rudram (appId = the doc id under /apps).
+    match /users/{uid}/apps/{appId} {
+      allow read, write: if request.auth != null && request.auth.uid == uid;
+    }
+  }
+}

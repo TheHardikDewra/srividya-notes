@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Om Swami's Sri Vidya sadhana notes, handwritten Dec 2010, made readable and navigable - the daily krama, fifteen nyasas, the puja vidhi, Shodashopachara on the Sri Sukta, and all nine avaranas on an interactive Sri Chakra.">
+  <meta name="theme-color" content="#0f0f0f">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta property="og:title" content="Sri Vidya Sadhana Notes">
+  <meta property="og:description" content="Om Swami's own Panchadashi Sri Vidya notes - daily krama, nyasas, puja vidhi, and the nine avaranas on an interactive Sri Chakra.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://panchadashi.vercel.app/">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Sri Vidya Sadhana Notes">
+  <meta name="twitter:description" content="Om Swami's own Panchadashi Sri Vidya sadhana notes, made navigable.">
+  <title>Sri Vidya Sadhana Notes — Om Swami</title>
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" href="icon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=Noto+Sans+Devanagari:wght@400;500;600;700&family=Tiro+Devanagari+Sanskrit&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-title">
+      <div class="title-block">
+        <h1 class="title-sanskrit">पंचदशी श्री विद्या साधना</h1>
+        <p class="title-english">Sri Vidya Sadhana Notes · Om Swami</p>
+      </div>
+      <div class="header-controls">
+        <button class="ctl-btn" id="script-toggle" aria-label="Switch script">दे+IAST</button>
+        <button class="ctl-btn" id="theme-toggle" aria-label="Toggle theme">System</button>
+        <div class="font-controls" id="font-controls"></div>
+        <button class="account-btn" id="account-btn" hidden aria-label="Sign in to sync progress"><svg class="account-icon" viewBox="0 0 256 256" width="14" height="14" fill="currentColor" aria-hidden="true"><path d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24ZM74.08,197.5a64,64,0,0,1,107.84,0,87.83,87.83,0,0,1-107.84,0ZM96,120a32,32,0,1,1,32,32A32,32,0,0,1,96,120Zm97.76,66.41a79.66,79.66,0,0,0-36.06-28.75,48,48,0,1,0-59.4,0,79.66,79.66,0,0,0-36.06,28.75,88,88,0,1,1,131.52,0Z"/></svg><span id="account-label">Sign in</span></button>
+      </div>
+    </div>
+    <nav class="nav-tabs" role="tablist">
+      <a href="#home"     class="nav-tab active" role="tab" data-view="home">Home</a>
+      <a href="#chakra"   class="nav-tab" role="tab" data-view="chakra">Chakra</a>
+      <a href="#krama"    class="nav-tab" role="tab" data-view="krama">Krama</a>
+      <a href="#text"     class="nav-tab" role="tab" data-view="text">Text</a>
+      <a href="#sheets"   class="nav-tab" role="tab" data-view="sheets">Sheets</a>
+      <a href="#practice" class="nav-tab" role="tab" data-view="practice">Practice</a>
+    </nav>
+  </header>
+
+  <main id="app">
+
+    <!-- ============================ HOME ============================ -->
+    <section id="view-home" class="view">
+      <div class="hero">
+        <div class="hero-yantra" id="hero-yantra" aria-hidden="true"></div>
+        <div class="hero-copy">
+          <p class="welcome-text">
+            In December 2010, before the sadhana that began that January, Om Swami wrote out
+            the whole of his Sri Vidya practice by hand — sixteen sheets covering the
+            <em>krama</em> from first purification to final <em>visarjana</em>. He later published
+            the scans and a typed transcript openly on
+            <a href="https://os.me/srividya" target="_blank" rel="noopener">os.me</a>,
+            for readers of <em>Thirteen Months in the Himalayas</em> who came looking for them.
+            This is that material, made navigable.
+          </p>
+          <p class="welcome-sub">
+            The nine <em>āvaraṇas</em> are laid on a Śrī Chakra you can actually touch;
+            the forty-one steps are a sequence you can follow; every line carries its
+            IAST; and his own handwriting sits one tap away from the typed text.
+          </p>
+        </div>
+      </div>
+
+      <div class="stats-grid">
+        <div class="stat-card"><span class="stat-number">15</span><span class="stat-label">Nyāsas</span></div>
+        <div class="stat-card"><span class="stat-number">41</span><span class="stat-label">Daily Steps</span></div>
+        <div class="stat-card"><span class="stat-number">123</span><span class="stat-label">Āvaraṇa Offerings</span></div>
+        <div class="stat-card"><span class="stat-number">16</span><span class="stat-label">Original Sheets</span></div>
+      </div>
+
+      <section class="home-section">
+        <h2 class="section-title">The Vow</h2>
+        <p class="section-note">What the notes commit to, written on the second sheet.</p>
+        <div class="vow-grid" id="vow-grid"></div>
+        <p class="vow-foot" id="vow-foot"></p>
+      </section>
+
+      <section class="home-section">
+        <h2 class="section-title">The Daily Shape</h2>
+        <p class="section-note">The six blocks of one sitting, with the page count Om Swami gave each.</p>
+        <ol class="shape-list" id="shape-list"></ol>
+      </section>
+
+      <section class="home-section">
+        <div class="notice">
+          <h3 class="notice-title">On the mantra</h3>
+          <p>
+            These notes carry the three <em>kūṭas</em> of the Pañcadaśī inside the nyāsa lines.
+            They are held back here by default. Om Swami published them himself, so nothing is
+            hidden that he has not already opened — but a mantra of this order is received by
+            <em>dīkṣā</em> from a living Guru, not picked up from a page. Reveal them only if
+            that is already your practice.
+          </p>
+          <button class="reveal-all-btn" id="reveal-all">Reveal kūṭas</button>
+        </div>
+      </section>
+
+      <section class="home-section">
+        <h2 class="section-title">Source</h2>
+        <div class="source-card">
+          <p>
+            Every word here comes from
+            <a href="https://os.me/srividya" target="_blank" rel="noopener">os.me/srividya</a> —
+            Om Swami's own site. The scans are his original sheets; the Devanagari is transcribed
+            from his typed PDF; the IAST is generated from that Devanagari, never typed by hand.
+          </p>
+          <p class="ack" id="ack"></p>
+          <div class="source-links">
+            <a class="src-link" href="https://os.me/srividya" target="_blank" rel="noopener">The page on os.me</a>
+            <a class="src-link" href="https://tbeidozdvzigycolegtm.supabase.co/storage/v1/object/public/downloads/Sri-Vidya-Sadhana-Notes-Typed.pdf" target="_blank" rel="noopener">Download the typed PDF</a>
+          </div>
+        </div>
+      </section>
+    </section>
+
+    <!-- =========================== CHAKRA =========================== -->
+    <section id="view-chakra" class="view" hidden>
+      <p class="view-intro">
+        Nine enclosures, worshipped from the outside in. Tap any ring to see whose seat it is
+        and what is offered there. Each enclosure names itself in the notes — the Sanskrit line
+        that closes every āvaraṇa says exactly which chakra it belongs to.
+      </p>
+      <div class="chakra-layout">
+        <div class="chakra-stage">
+          <div class="yantra-holder" id="yantra-holder"></div>
+          <div class="chakra-legend" id="chakra-legend"></div>
+        </div>
+        <aside class="chakra-panel" id="chakra-panel"></aside>
+      </div>
+    </section>
+
+    <!-- ============================ KRAMA ============================ -->
+    <section id="view-krama" class="view" hidden>
+      <p class="view-intro">
+        The forty-one steps of one sitting, in Om Swami's order. Tick them as you go —
+        the list clears itself at the start of each day.
+      </p>
+      <div class="krama-bar">
+        <div class="krama-progress"><div class="krama-fill" id="krama-fill"></div></div>
+        <span class="krama-count" id="krama-count">0 / 41</span>
+        <button class="ghost-btn" id="krama-reset">Clear</button>
+      </div>
+      <div class="krama-list" id="krama-list"></div>
+    </section>
+
+    <!-- ============================ TEXT ============================= -->
+    <section id="view-text" class="view" hidden>
+      <div class="text-toolbar">
+        <input type="search" class="search-input" id="text-search" placeholder="Search Devanagari, IAST or name…" aria-label="Search the text">
+        <span class="search-count" id="search-count"></span>
+      </div>
+      <div class="text-layout">
+        <nav class="text-toc" id="text-toc" aria-label="Sections"></nav>
+        <div class="text-body" id="text-body"></div>
+      </div>
+    </section>
+
+    <!-- =========================== SHEETS ============================ -->
+    <section id="view-sheets" class="view" hidden>
+      <p class="view-intro">
+        The sixteen original sheets, written in December 2010, and the Śrī Yantra Om Swami
+        drew and did the sadhana on. Tap any sheet to open it full size.
+      </p>
+      <div class="sheet-grid" id="sheet-grid"></div>
+    </section>
+
+    <!-- ========================== PRACTICE =========================== -->
+    <section id="view-practice" class="view" hidden>
+      <p class="view-intro">
+        The notes set fifteen lakh japa across a hundred and fifty days. Track yours here.
+        Progress is kept on this device, and synced to your account if you sign in.
+      </p>
+
+      <div class="practice-grid">
+        <div class="practice-card">
+          <h2 class="section-title">Japa</h2>
+          <div class="ring-wrap"><canvas id="japa-ring" width="240" height="240"></canvas>
+            <div class="ring-centre"><span class="ring-pct" id="japa-pct">0%</span><span class="ring-sub" id="japa-total">0</span></div>
+          </div>
+          <p class="practice-target">of 15,00,000</p>
+          <div class="counter-row">
+            <button class="count-btn" data-add="108">+108</button>
+            <button class="count-btn" data-add="1080">+1080</button>
+            <button class="count-btn" data-add="10800">+10800</button>
+          </div>
+          <div class="counter-row">
+            <input type="number" class="count-input" id="japa-custom" placeholder="custom" min="1" step="1">
+            <button class="count-btn" id="japa-add">Add</button>
+            <button class="ghost-btn" id="japa-undo">Undo today</button>
+          </div>
+          <p class="practice-today" id="japa-today"></p>
+        </div>
+
+        <div class="practice-card">
+          <h2 class="section-title">Days</h2>
+          <div class="ring-wrap"><canvas id="day-ring" width="240" height="240"></canvas>
+            <div class="ring-centre"><span class="ring-pct" id="day-pct">0</span><span class="ring-sub">of 150</span></div>
+          </div>
+          <p class="practice-target">days the full pūjā was done</p>
+          <button class="count-btn wide" id="day-mark">Mark today complete</button>
+          <p class="practice-today" id="day-today"></p>
+          <div class="day-dots" id="day-dots"></div>
+        </div>
+      </div>
+
+      <div class="practice-card wide-card">
+        <h2 class="section-title">Log</h2>
+        <div class="log-list" id="japa-log"></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>
+      Source: <a href="https://os.me/srividya" target="_blank" rel="noopener">os.me/srividya</a> ·
+      Notes by Om Swami, typed by Denish Patel ·
+      Built by <a href="https://wedesignlandingpages.com" target="_blank" rel="noopener">Hardik Dewra</a>
+    </p>
+    <p class="footer-note">Not a substitute for dīkṣā. Sri Vidya is received from a living Guru.</p>
+  </footer>
+
+  <div class="lightbox" id="lightbox" hidden>
+    <button class="lb-close" id="lb-close" aria-label="Close">&times;</button>
+    <div class="lb-nav">
+      <button class="lb-arrow" id="lb-prev" aria-label="Previous sheet">&#8249;</button>
+      <span class="lb-title" id="lb-title"></span>
+      <button class="lb-arrow" id="lb-next" aria-label="Next sheet">&#8250;</button>
+    </div>
+    <div class="lb-stage" id="lb-stage"><img id="lb-img" alt=""></div>
+  </div>
+
+  <script src="data.js"></script>
+  <script src="yantra-data.js"></script>
+  <script src="firebase-config.js"></script>
+  <script src="yantra.js"></script>
+  <script src="app.js"></script>
+  <script src="sync.js"></script>
+</body>
+</html>

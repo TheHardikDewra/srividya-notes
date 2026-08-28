@@ -1,0 +1,13 @@
+{
+  "name": "Sri Vidya Sadhana Notes",
+  "short_name": "Sri Vidya",
+  "description": "Om Swami's Panchadashi Sri Vidya sadhana notes - daily krama, fifteen nyasas, the puja vidhi, and the nine avaranas on an interactive Sri Chakra",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#0f0f0f",
+  "theme_color": "#0f0f0f",
+  "icons": [
+    { "src": "icon.svg", "sizes": "192x192", "type": "image/svg+xml" },
+    { "src": "icon.svg", "sizes": "512x512", "type": "image/svg+xml" }
+  ]
+}
